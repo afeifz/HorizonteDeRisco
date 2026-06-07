@@ -2,7 +2,9 @@ package br.com.global.controller;
 
 import br.com.global.dto.nasa.NasaEventReponseDTO;
 import br.com.global.entity.Alert;
+import br.com.global.entity.NaturalEvent;
 import br.com.global.repository.AlertRepository;
+import br.com.global.repository.EventRepository;
 import br.com.global.service.NasaEventService;
 import br.com.global.service.SyncService;
 import org.springframework.web.bind.annotation.*;
@@ -16,15 +18,17 @@ public class EventController {
     private final SyncService syncService;
     private final NasaEventService nasaEventService;
     private final AlertRepository alertRepository;
+    private final EventRepository eventRepository;
 
     public EventController(
             SyncService syncService,
             NasaEventService nasaEventService,
-            AlertRepository alertRepository
-    ) {
+            AlertRepository alertRepository,
+            EventRepository eventRepository) {
         this.syncService = syncService;
         this.nasaEventService = nasaEventService;
         this.alertRepository = alertRepository;
+        this.eventRepository = eventRepository;
     }
 
     @GetMapping
@@ -51,4 +55,5 @@ public class EventController {
     ) {
         return alertRepository.findByRiskLevel(risk);
     }
+
 }

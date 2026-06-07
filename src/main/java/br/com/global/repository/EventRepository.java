@@ -8,4 +8,5 @@ public interface EventRepository
         extends JpaRepository<NaturalEvent, Long> {
 
     boolean existsByNasaId(String nasaId);
+
 }
