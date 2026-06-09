@@ -8,6 +8,8 @@ import br.com.global.repository.EventRepository;
 import br.com.global.service.NasaEventService;
 import br.com.global.service.SyncService;
 import org.springframework.web.bind.annotation.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.List;
 
@@ -19,6 +21,10 @@ public class EventController {
     private final NasaEventService nasaEventService;
     private final AlertRepository alertRepository;
     private final EventRepository eventRepository;
+    private static final Logger log =
+            LoggerFactory.getLogger(
+                    EventController.class
+            );
 
     public EventController(
             SyncService syncService,
@@ -33,19 +39,36 @@ public class EventController {
 
     @GetMapping
     public NasaEventReponseDTO getEvents() {
+
+        log.info(
+                "Consulta de eventos NASA realizada"
+        );
         return nasaEventService.fetchEvents();
     }
 
     @PostMapping("/sync")
     public String sync() {
 
+        log.info(
+                "Sincronização iniciada"
+        );
+
         int total = syncService.syncEvents();
+
+        log.info(
+                "Sincronização concluída. Total: {}",
+                total
+        );
+
 
         return total + " eventos importados.";
     }
 
     @GetMapping("/alerts")
     public List<Alert> getAlerts() {
+        log.info(
+                "Consulta de alertas realizada"
+        );
         return alertRepository.findAll();
     }
 

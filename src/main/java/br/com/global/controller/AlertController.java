@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.List;
 
@@ -17,6 +19,10 @@ public class AlertController {
 
     private final AlertService service;
     private final AlertRepository alertRepository;
+    private static final Logger log =
+            LoggerFactory.getLogger(
+                    EventController.class
+            );
 
     public AlertController(AlertService service, AlertRepository alertRepository) {
         this.service = service;
