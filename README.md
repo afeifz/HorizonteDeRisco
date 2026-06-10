@@ -4,9 +4,8 @@
 
 ## Integrantes
 
-* Nome 1 - RM XXXXX
-* Nome 2 - RM XXXXX
-* Nome 3 - RM XXXXX
+* Mohamed Afif Smaili - RM 554445
+
 
 ---
 
